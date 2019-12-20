@@ -1,0 +1,177 @@
+% !TEX root = ../thesis.tex
+
+\chapter{马尔可夫跳变Lur'e系统的异步控制器设计}
+Lur'e系统是一种重要的非线性系统，...因此，本章考虑马尔可夫跳变Lur'e系统的异步控制器设计问题，同时对其$\ell_2$性能进行分析。
+
+\section{数学模型及问题描述}
+	本章考虑下面的马尔可夫跳变Lur'e系统：
+	\begin{equation}\label{syseq}\left\{
+	\begin{array}{lr}
+		\begin{split}
+			x_{k+1}=A_{r(k)}x_k+F_{r(k)}\varphi(y_k)+B_{r(k)}u_k +E^x_{r(k)}w_,
+		\end{split}\\
+		\begin{split}
+			y_k=C_{r(k)}x_k,
+		\end{split}
+		\\
+		\begin{split}
+			z_k= C^z_{r(k)}x_k+G^z_{r(k)}\varphi(y_k)+D^z_{r(k)}u_k+E^z_{r(k)}w_k,
+		\end{split}	
+	\end{array}\right.
+	\end{equation}
+	其中 $x_k\in\mathbb{R}^{n_x}$ 表示系统状态， $u_k\in\mathbb{R}^{n_u}$ 表示控制输入， $y_k\in\mathbb{R}^{n_y}$ 表示一个包含非线性的观测输出，$ z_k\in\mathbb{R}^{n_z}$ 表示被控输出, $w_k\in\mathbb{R}^{n_w}$ 表示外界扰动。 $A_{r(k)}$， $F_{r(k)}$， $B_{r(k)}$， $E^x_{r(k)}$， $C^z_{r(k)}$，$G^z_{r(k)}$， $D^z_{r(k)}$ 及 $E^z_{r(k)}$ 是已知的实系统矩阵且具备合适维度。
+	$\{r(k),k\geq0\}$ 是一个马尔可夫链，且在集合 $\mathcal{N}=\{1,2,\dots,N\}$ 中取值，并且满足如下模态转移概率：
+	\begin{equation}
+	\Pr\{r(k+1)=j|r(k)=i\}=\pi_{ij},
+	\end{equation}
+	其中 $\pi_{ij}\in[0,1]$， 对任意的 $i,j\in\mathcal{N}$，且 $\sum_{j=1}^{N}\pi_{ij}=1$ 对任意的模态 $i$. 在 $i$ 时刻的系统矩阵可以记作 $A_i$，$F_i$，$B_i$，$E^x_i$，$C^z_i$，$G^z_i$，$D^z_i$，且相应的模态转移矩阵可以表示为 $\varPi=\{\pi_{ij}\}$.
+	
+	首先，我们对非线性 $\varphi(\cdot)$ 做如下的假设
+	
+	{\bf 定义 \ \ 2.1：} 
+	非线性 $\varphi(\cdot): \mathbb{R}^{n_y}\rightarrow\mathbb{R}^{n_y}$ 满足一个有界扇形条件，如果下面两个条件能够同时满足：
+		
+		(1) $\varphi(0)=0$ 
+		
+		(2) 存在正定矩阵 $\varOmega \in\mathbb{R}^{n_y\times n_y}$，对任意的 $y\in\mathbb{R}^{n_y}$, $\nu \in\{1,\dots,n_y\}$，使得下式成立 
+		\begin{equation}\label{cbs} 
+		\varphi_{(\nu)}(y)[\varphi(y)-\varOmega y ]_{(\nu)}\leq 0
+		\end{equation}
+		
+	由式 \eqref{cbs}，我们可以推出
+	\begin{equation}\label{scieq}
+	SC(y,\varLambda):= \varphi^{\mathrm{T}}(y)\varLambda[\varphi(y)-\varOmega y]\leq0,
+	\end{equation}
+	其中 $\varLambda$ 是任意的半正定矩阵， 且 $\varOmega$ 可以由设计者自己预先给出。然后我们根据上式可以进一步推出
+	\begin{equation}
+	[\varOmega y]_{(\nu)}[\varphi(y)-\varOmega y]_{(\nu)}\leq0,
+	\end{equation}
+	这个式子可以进一步得到
+	\begin{equation}
+	0\leq\varphi^{\mathrm{T}}(y)\varLambda\varphi(y) \leq \varphi^{\mathrm{T}}(y)\varLambda\varOmega y \leq y^{\mathrm{T}}\varOmega\varLambda\varOmega y
+	\end{equation}
+	
+	下面我们给出系统的稳定性定义
+	
+	{\bf 定义 \ \ 2.1：} 
+	当 $w(k)\equiv0$ 时，我们称系统 \eqref{syseq} 是随机稳定的，如果
+	\begin{equation}
+	\|x\|^2_2=\sum_{k=0}^{\infty}\mathbb{E}[\|x_k\|^2]<\infty.
+	\end{equation} 
+	
+	下面我们给出系统 $\ell_2$ 性能定义
+	
+	{\bf 定义 \ \ 2.2：}
+	给定一个正标量 $\zeta$， 定义如下集合 $\mathcal{W}_{\zeta} $ 	
+	\begin{equation}
+		\begin{split}
+			\mathcal{W}_{\zeta}&:=\Big\{ w=\{w_k\}; \   \|w\|^2_2=\sum_{k=0}^{\infty}\mathbb{E}[\|w_k\|^{2}]<\zeta\Big\}\\
+		\end{split}
+	\end{equation}
+	对任意的  $w\in\mathcal{W}_{\zeta}$， 如果下式成立
+	\begin{equation}
+		\|z\|^2_2=\sum_{k=0}^{\infty}\mathbb{E}\left[\|z_k\|^2\right] \leq \gamma^{2}\|w\|^2_2
+	\end{equation}
+	那么，我们称在零初始条件下，系统在外界扰动 $w=\{w_k\}$ 及控制输出 $z=\{z_k\}$ 间的 $\ell_2$ 增益是小于等于 $\gamma$ 的。
+	
+	在本章中，我们考虑如下异步控制器
+	\begin{equation}\label{asycontroller}
+	u_k=K_{\sigma(k)}x_k+\varGamma_{\sigma(k)}\varphi(y_k) 
+	\end{equation}
+	其中 $K_{\sigma(k)}\in \mathbb{N}^{n_u\times n_x}$ 是一个时变线性状态反馈矩阵， $\varGamma_{\sigma(k)}\in \mathbb{N}^{n_u\times n_y}$ 表示非线性时变输出反馈矩阵。 参数 $\sigma(k)$ 表示控制器的模态，且在集合  $\mathcal{M}=\{1,2,\dots,M\}$ 中取值，并且满足条件模态转移矩阵 $\varPhi=\{\mu_{i\phi} \}$，该矩阵对应的条件模态转移概率为
+	\begin{equation}
+	\Pr\{\sigma(k)=\phi|r(k)=i\}=\mu_{i\phi}
+	\end{equation}
+	其中，对任意的 $i\in\mathcal{N}$ 及 $\phi\in\mathcal{M}$ 有 $\mu_{i\phi}\in [0,1]$，且对任意的模态 $i$ 有 $\sum_{\phi=1}^{M}\mu_{i\phi}=1$。
+	
+	{\bf 注 \ \ 2.1：} 
+	同 \cite{passive_wu} 相似，本章中采用了隐马尔可夫模模型来描述出现在系统与控制器之间的模态异步现象。不难发现，我们设计的控制器包含了一个线行的状态反馈部分，还包含了一个满足假设一的非线性输出反馈部分，这可以使得我们得到的结果更加的不保守。不同于之前同步控制器的设计方法，如\cite{song_control} 及 \cite{costaolv_control_1}，本章中设计的控制器是一个异步控制器，这意味着系统模态和控制器模态在同一时刻可能是不同的。 显然，当条件模态转移矩阵 $\varPhi$ 是一个单位矩阵的时候，控制器模态会与系统模态保持一致，即，控制器会变成了一个同步控制器。 同时，如果控制器的模态只有一个的时候，我们可以认为此时系统是模态无关。也就是说，基于隐马尔可夫模模型的异步控制器设计方法，可以通过改变模态转移概率矩阵，使得异步控制器转变为同步控制器或者特殊的模态无关控制器。
+	
+	根据系统方程 \eqref{syseq} 和控制器 \eqref{asycontroller}， 我们可以得到如下闭环控制系统
+	\begin{equation}\label{close_system_equation_2}
+	\left\{
+	\begin{array}{lr}
+	\begin{split}
+	x_{k+1}=\bar{A}_{i\theta}x_k+\bar{F}_{i\theta}\varphi_{i}(C_ix_k)+E_i^xw_k\\
+	\end{split}
+	\\
+	\begin{split}
+	z_k=\bar{C}^{z}_{i\theta}x_k+\bar{G}^{z}_{i\theta}\varphi_{i}(C_ix_k)+E^z_iw_k
+	\end{split}
+	\end{array}
+	\right.
+	\end{equation} 
+	其中，对任意的 $i \in \mathcal{N}, \phi \in \mathcal{M}$ 有
+	\begin{equation} \notag
+	\begin{aligned}
+	\bar{A}_{i\phi}=A_{i}+B_{i}K_{\phi},  \qquad \bar{F}_{i\phi}=F_{i}+B_{i}\varGamma_{i\phi} \\
+	\bar{C}^{z}_{i\phi}=C^{z}_{i}+D^{z}_{i}K_{\phi}, \qquad \bar{G}^{z}_{i\phi}=G^{z}_{i}+D^{z}_{i}\varGamma_{\phi}
+	\end{aligned}
+	\end{equation}
+	
+
+\section{主要成果}
+	在本节，我们首先会针对给定马尔科夫跳变Lur'e系统，我们对其对其稳定性进行分析，然后，我们会对在稳定性的前提下，进一步对其$\ell_2$性能进行研究。
+
+\subsection{随机稳定性分析}
+	本小结将会给出一个充分条件，该条件将以LMI的形式给出，且可以保证系统的随机稳定性。
+	
+	{\bf 定理 \ \ 2.1：}
+	考虑马尔科夫跳变Lur'e系统 \eqref{close_system_equation_2}， 对任意的 $i \in \mathcal{N}$， $\phi \in \mathcal{M}$，如果存在正定矩阵 $\bar{P_i} \in \mathbb{R}^{n_x\times n_x}$， $R_{i\phi } \in \mathbb{R}^{(n_x+n_y)\times(n_x+n_y)}$，矩阵 $K_{\phi} \in \mathbb{R}^{n_u\times n_x}$， $\varGamma_{\phi} \in \mathbb{R}^{n_u \times n_y}$ 及半正定矩阵 $T_{i}\in \mathbb{R}^{n_y}$ 使得下面的式子成立
+	\begin{equation}\label{condition_1_1}
+	\begin{bmatrix}
+	-R_{i\theta}&\mathscr{H}_{i\phi}\\
+	*&\mathscr{P}_{i}
+	\end{bmatrix}<0
+	\end{equation}
+	\begin{equation}\label{condition_1_2}
+	\begin{bmatrix}
+	\mathscr{S}_{i\phi}&\mathscr{N}_{i\phi}\\
+	*&\mathscr{L}_{i\phi}
+	\end{bmatrix}<0
+	\end{equation}
+	其中
+	\begin{equation}\notag
+	\begin{aligned}
+	\mathscr{N}_{i\phi}&=\begin{bmatrix}
+	\sqrt{u_{i1}}W_{i1}&\sqrt{u_{i2}}W_{i2}&\cdots&\sqrt{u_{iM}}W_{iM}
+	\end{bmatrix}\\
+	\mathscr{P}_{i\phi}&=\mathrm{diag} \{-\bar{P}_{1},-\bar{P}_{2},\dots,-\bar{P}_{N}  \}\\
+	\mathscr{L}_{i\phi}&=\mathrm{diag} \{-L_{i1},-L_{i2},\dots,-L_{iM}  \}\\
+	\mathscr{H}_{i\phi}&=\begin{bmatrix}
+	\sqrt{\pi_{i1}}\hat{A}_{i\phi}\\
+	\sqrt{\pi_{i2}}\hat{A}_{i\phi}\\
+	\vdots\\
+	\sqrt{\pi_{i_N}}\hat{A}_{i\phi}
+	\end{bmatrix}^{T}, \quad
+	\hat{A}_{i\theta}=\begin{bmatrix}
+	\bar{A}_{i\theta}&\bar{F}_{i\theta}
+	\end{bmatrix}  \\
+	W_{i\phi}&=\begin{bmatrix}
+	\bar{P}_{i}&0\\
+	*&R_{i1}
+	\end{bmatrix}, \quad
+	L_{i\phi}=\begin{bmatrix}
+	I_{n_x}&0\\
+	*&R_{i1}
+	\end{bmatrix}\\
+	H_{i\theta}&=\begin{bmatrix}
+	-I_{n_x}&C^{T}_{i}\varOmega_{i}T_{i} \\
+	*&-2T_{i}
+	\end{bmatrix}\\
+	\mathscr{S}_{i\phi}&= \begin{bmatrix}
+	-\bar{P}_{i}&0\\
+	*&H_{i\phi}
+	\end{bmatrix}\\
+	\end{aligned}
+	\end{equation}
+	那么，我们称闭环控制系统 \eqref{close_system_equation_2} 是随机稳定的。
+	
+	
+	
+	
+
+	
+	
+	
+	
