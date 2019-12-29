@@ -972,7 +972,8 @@ Created: 2014.09.15 by Sky and Hamburger, Last Modified: 2014.09.12 by Hamburger
 
 % 采用gbt7714-2005参考文献样式，
 % 参考自https://github.com/githamburger/GBT7714-2005-BibTeX-Style
-\bibliographystyle{gbt7714-2005}
+% \bibliographystyle{gbt7714-2005}
+\bibliographystyle{referancestyle}
 
 % natbib宏包命令，参考文献上标设置。
 \setcitestyle{super,square,comma}
@@ -1149,13 +1150,13 @@ Created: 2014.09.15 by Sky and Hamburger, Last Modified: 2014.09.12 by Hamburger
 
 % ---------- 缩写、符号清单、术语表 ----------
 % 以下尺寸详细说明见P33/112
-\newenvironment*{denotation}[1][2.5cm]{
+\newenvironment*{denotation}[1][4cm]{
 \chapter{缩写、符号清单、术语表}
 \noindent
 \begin{list}{}{
 	\renewcommand\makelabel[1]{##1\hfil}
 	\setlength{\itemindent}{0cm} 			% 标签缩进量
-	\setlength{\labelsep}{1cm} 				% 标签与列表文本距离
+	\setlength{\labelsep}{1.5cm} 				% 标签与列表文本距离
 	\setlength{\labelwidth}{#1} 			% 标签盒子宽度，如有需要可以自行修改
 	\setlength{\listparindent}{0pt} 		% 同一\item 第二及以后段落缩进量
 	\setlength{\rightmargin}{0cm}
