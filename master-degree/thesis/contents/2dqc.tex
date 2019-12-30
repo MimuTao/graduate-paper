@@ -1,7 +1,9 @@
 % !TEX root = ../thesis.tex
 
 \chapter{二维Markov跳变系统的异步二次型控制}
-这里是对Qccontrol的介绍
+	二次型控制也是一种典型的控制方法，近年来，Markov跳变系统的二次型控制问题也得到了广泛的研究并取得了一系列的重要成果\cite{ji1990controllability,costa1999constrained,do2016quadratic}。文献\cite{zabala2019detector}对模态不匹配的1D-Markov跳变系统二次型进行了讨论，探究了不同初始条件的最优成本性能。文献\cite{guan2001robust,dhawan2007optimal,dhawan2010lmi}对2D系统下的Rosser模型和FM模型的保成本控制进行了讨论，并在文献中对初始状态做出了一些基本假设。
+	
+	本章中，我们将探究基于Rosser模型的2D-Markov跳变系统的二次型控制问题。考虑控制模态同系统模态的不匹配问题，我们引入隐Markov模型设计了一个线性状态反馈控制器。根据2D系统的结构和特性定义了一个成本函数，并根据初始条件的不同情况分别对系统的最优成本性能展开讨论。
 
 \section{数学模型及问题描述}
 	本章考虑如下Roesser模型下的二维Markov跳变系统
@@ -239,7 +241,7 @@
 	这里，$\varrho_{1}$，$\varrho_{2}$分别表示系统、控制器的模态，$\varpi_{\varrho_{1}}$，$\omega_{\varrho_{2}}$分别表示初始模态中，对应的系统模态等于$\varrho_{1}$，控制器模态等于$\varrho_{2}$的数量。
 	
 	{\bf 证明：} 
-	我们选择跟定理4.1一样的李雅普诺夫函数，稳定性不难发现已经可以由\eqref{qc-T1-1}-\eqref{qc-T1-2}保证。同时，由假设4.4是假设4.3基础上的进一步加强，则易可以知道，在假设4.4的基础上，可以保证\eqref{qcT1C3}成立。由假设4.4，我们可以推出
+	我们选择跟定理4.1一样的李雅普诺夫函数，稳定性不难发现已经可以由\eqref{qc-T1-1}-\eqref{qc-T1-2}保证。同时，由于假设4.4是在假设4.3基础上的进一步加强，那么不难推出，当系统满足假设4.4时，可以保证\eqref{qcT1C3}成立。由假设4.4，我们同时可以推出
 	\begin{equation}
 		\begin{split}
 			J(i,j)&\leq \varpi_1\lambda_{max}(Z^{T}_{1}R^{h}_{1}Z_{1})+\dots+\varpi_{N_{1}}\lambda_{max}(Z^{T}_{1}R^{h}_{N_{1}}Z_{1}) \\ 
@@ -282,7 +284,7 @@
 				
 	\end{bmatrix}<0
 	\end{equation}	
-	则，系统是渐进均方稳定的，且，相对应的保成本性能为
+	则，系统是渐进均方稳定的，且对应的保成本性能为
 	\begin{equation}
 	\begin{split}
 	J(i,j) \leq l_1\lambda_1 + l_2\lambda_2
@@ -298,7 +300,7 @@
 	*&*&*&-\bar{Q}_{kN_2}\\
 	\end{bmatrix}<0
 	\end{equation}
-	然后，根据Schur补引理，可以得到可以得到\eqref{qc-T1-1}。
+	然后，根据Schur补引理，可以得到\eqref{qc-T1-1}成立。
 	不难发现\eqref{qcT3C4}可以推出下式
 	\begin{equation} 
 	\begin{bmatrix}
@@ -309,7 +311,7 @@
 	*&*&*&*&-\bar{R}_{N_1}\\
 	\end{bmatrix}<0
 	\end{equation}
-	使用$\mathrm{diag}\{T^{-1}_s,I,\dots,I \}$分别左乘，右乘上式，然后使用Schur补引理，可以推出\eqref{qc-T1-2}成立。
+	使用$\mathrm{diag}\{T^{-1}_s,I,\dots,I \}$及其转置分别左乘，右乘上式，然后再使用Schur补引理，可以推出\eqref{qc-T1-2}成立。
 	这样，系统的稳定性可以保证。
 	根据假设4.3，由于系统的初始模态并不知道，我们无法确定系统每个模态对应的数量。因此，我们需要对任意的系统模态下，$\lambda_{max}(Z^{T}_{1}R^{h}_{\varrho_{1}}Z_{1})$，$\lambda_{max}(Z^{T}_{2}R^{v}_{\varrho_{2}}Z_{2})$分别得到确定一个统一的上界。
 	由\eqref{qcT3C1}-\eqref{qcT3C2}可以得到
@@ -432,7 +434,7 @@
 	\end{bmatrix}
 	\end{equation*}
 	
-	同时，系统的最小保成本性能$J^{*}=0.4512$。然后，施加了控制器以后的系统水平、垂直状态轨迹分别绘制于图\ref{figqchstate1}、图\ref{figqcvstate1}中。显然，当施加了异步二次型控制器以后，系统在水平、垂直方向的状态轨迹都收敛了，表明，此时系统是稳定的。同时，控制作用$u(i,j)$在水平方向、垂直方向的作用效果分别绘制于图\ref{figqcuh}、图\ref{figqcuv}中。综合仿真结果，可以得出结论，我们设计的控制器是有效的。
+	同时，系统的最小保成本性能$J^{*}=0.4512$。然后，施加了控制器以后的系统水平、垂直状态轨迹分别绘制于图\ref{figqchstate1}、图\ref{figqcvstate1}中。显然，当施加了异步二次型控制器以后，系统在水平、垂直方向的状态轨迹都收敛了，表明，此时系统是稳定的。同时，控制作用$u(i,j)$在水平方向、垂直方向的作用效果分别绘制于图\ref{figqcuh}、图\ref{figqcuv}中。综合仿真结果，可以得出结论，本章中设计的控制器是有效的。
 	\begin{figure}[!htb]
 		\centering\includegraphics[scale=0.6]{./figures/qc/simulation/hstate.eps}\\ 
 		\caption{异步二次型控制下的水平状态 $x^{h}(i,j)$}

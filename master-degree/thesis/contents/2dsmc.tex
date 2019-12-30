@@ -1,7 +1,11 @@
 % !TEX root = ../thesis.tex
 
 \chapter{二维Markov跳变系统的异步滑模控制}
-一些简单的介绍
+	在实际应用中，信息的传递可能会沿着多个维度传递，这样的系统我们称之为多维控制系统。当系统信息的传递方向只有两个的时候，我们称这样的多维系统为二维(2D)控制系统。2D控制系统的历史可以追溯到上个世纪70年代，现在已经已经被用来处理各种各样的实际应用，例如数字图像处理，偏微分方程建模和信号滤波\cite{roesser1975discrete,marszalek1984two,rogers2015multidimensional}等。同一维(1D)系统不同的是，二维系统的信息会沿着两个不同的方向传递，并且这两个方向的信息会相互作用，这意味着2D系统相对1D系统更加复杂，分析起来也更加困难。 为了来表述2D系统的特殊结构和性质，学者们提出了一些基于状态空间的数学模型，其中比较流行的是Roesser模型 \cite{roesser1975discrete} 和 Fornasini-Marchesini 模型 \cite{fornasini1978doubly}。在Roesser模型中，系统状态由水平状态和垂直状态这两个独立的子状态组成，可以从当前状态分别推导出不同方向上的下一个水平状态和垂直状态。 与Roesser模型不同，Fornasini-Marchesini模型中的系统状态并不区分水平、垂直子状态，而是用一个向量来表示两个方向的信息，即该向量是具有两个独立变量的函数，并且当前系统状态是从它的左边相邻、下方相邻状态得到的。 在大多数情况下，Roesser模型可以看作是Fornasini-Marchesini模型的特例，但Rosser模型的表达形式更加直观，更容易理解，在某些情况下更便于系统分析。Du等人在文献\cite{du2001h,du2002hinfinity}中利用2D有界实引理建立了2D系统的$H_\infty$控制理论。随后，一些学者将这个成果推广到了具有时变延迟\cite{trinh2016stability}、多类噪声\cite{ahn2016stochastic}、不确定模态转移参数 \cite{chesi2016robust}等2D系统的控制、滤波问题中。Anh在文献\cite{ahn2015two}中，可以矩阵先行不等式方法研究了2D-Makrov跳变系统的无源控制和滤波问题。
+	
+	另一方面，滑模控制(SMC)是一种非常有效的控制技术。由于它对参数变化，外部干扰和模型不确定性具有强大的鲁棒性，已成功应用于各种实际系统中\cite{utkin2009sliding,yang1999sliding,shima2006sliding}。滑模控制的主要思想是，首先构造一个滑模面，然后根据这个滑模面设计一个不连续的控制率，在该控制率的作用下，系统状态会不断的向滑模面靠近，最终达到滑模面或者进入到滑模面的某个领域内\cite{edwards1998sliding}。近年来，学者们对滑模控制进行了深入的研究，并对Markov跳变系统取得了一系列重要的成果\cite{li2015state,wu2010state,wang2017smc}。最近，一些学者对1D-Markov跳变系统模态不匹配的滑模控制问题进行了研究\cite{song2018asynchronous,li2017passivity,qi2018observer}。2D-Markov跳变系统的滑模控制问题也同样吸引了一些学者的兴趣。如文献\cite{gao2004stabilization,wu2018hcontrol2d,wu2008hfiltering2d,wu2006modelreduction,shen2019dissipativity}对2D-Markov跳变系统的$H_\infty$控制、$H_\infty$滤波、$H_\infty$模型推导、故障检测等问题进行了讨论。但是目前为止，尚且没有文章研究2D-Markov跳变系统的滑模控制问题。
+	
+	本章中，我们将研究2D-Markov跳变系统的滑模控制问题。考虑到2D系统的特殊结构和特性，我们将构造一个全新的2D滑模控制面。另一方面，考虑控制器模态同系统模态的不匹配问题，我们引入隐马尔可夫模型来设计滑模控制器。同时，我们将对考虑系统的稳定性、$H_\infty$性能、系统状态到滑模面的可达性等问题分别展开讨论。
 
 \section{数学模型及问题描述}
 	本章考虑如下由Rosser模型描述二维跳变系统：
