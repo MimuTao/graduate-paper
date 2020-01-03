@@ -3,23 +3,25 @@
 % 定义英文摘要和关键字
 
 \begin{eabstract}
-An abstract of a dissertation is a summary and extraction of research work
-and contributions. Included in an abstract should be description of research
-topic and research objective, brief introduction to methodology and research
-process, and summarization of conclusion and contributions of the
-research. An abstract should be characterized by independence and clarity and
-carry identical information with the dissertation. It should be such that the
-general idea and major contributions of the dissertation are conveyed without
-reading the dissertation.
+Most results of Markov jump systems are based on a implicit assumption, that is, the modes of controller are the same as modes of original system. However, the imperfection of  physical devices might impair this ideal assumption. On the one hand, the controller may will not receive accurate system modes information due to package loss or delays. On the other hand, failure of the mode switching devices and low stitching efficiency may also prevent the controller from  timely switching to the corresponding system mode. Researchers proposed a  statistical method called hidden Markov model, which weaken the needs of physical devices and more practical compared with absolute match case, to deal with the modes mismatch problem. In this model, the controller modes are obtained by a conditional transition probability from modes of system to controller. We can handle all match, partial match, none match of modes between controller and system simultaneously by adjust the conditional transition probability, which means the hidden Markov model is a powerful unite model. In this paper, we will discuss the control problems of some classic nonlinear Markov jump systems with mismatch modes.
 
-An abstract should be concise and to the point. It is a misunderstanding to
-make an abstract an outline of the dissertation and words ``the first
-chapter'', ``the second chapter'' and the like should be avoided in the
-abstract.
+The main contributions are list as follows
 
-Key words are terms used in a dissertation for indexing, reflecting core
-information of the dissertation. An abstract may contain a maximum of 5 key
-words, with semi-colons used in between to separate one another.
+(1) Considering a class of Markov jump Lur'e systems with mismatch modes information,  we design a asynchronous controller which is composed of  linear state feedback and  nonlinear (the same as system) output feedback, based on hidden Markov model.  The unique controller structure is more flexible  than the  state feedback ones and will have better results. Then, the stability and $l_2$ performance are discussed, a sufficient condition presented in LMI is obtained to guarantee the system is stochastically stable with a $l_2$ performance from disturbance to output. Finally, a numerical example is provided to illustrate the effectiveness of obtained results.
+
+(2) Considering a class of nonlinear 2D-Markov jump systems in Rosser model, we study the sliding mode control problems of it. Noting the special properties of 2D systems, a novel 2D sliding surface is constructed. In order to handle the mismatch modes between system and controller, the hidden Markov model is introduced to design the sliding mode control law. Then, we discuss the system stability with a  $H_\infty$ performance and the reachability of states to the sliding surface, respectively. A sufficient condition is obtained which can guarantee the system is  asymptotically mean square stable with a $H_\infty$  performance and the reachability of sliding mode dynamics, simultaneously. Finally, we summaries  the sliding mode controller design procedures into to an algorithm whose effectiveness is verified by a numerical example. 
+
+
+(3) Considering a class of 2D-Markov jump systems in Rosser model, we study the quadric control problems of it. Noting the mismatch modes between controller and system, we introduce a hidden Markov model to design a asynchronous state feedback controller. Then, a quadric cost function is defined and the system stability is discussed. The guaranteed cost performance is studied based on three different initial conditions
+ 
+ \begin{itemize}
+ 	\item  both initial system states  and initial system modes are known,
+ 	\item  initial system states satisfy a bounded condition and initial system modes are known,
+ 	\item  initial system states satisfy a bounded condition and initial system modes are known.
+ \end{itemize}
+ Finally,  sufficient conditions that can make sure system is stable with a optimal guaranteed cost performance  of different initial conditions are obtained.
+
+
 \end{eabstract}
 
-\ekeywords{\TeX, \LaTeX, CJK, template, thesis}
+\ekeywords{Markov jump systems, mismatch modes, asynchronous control,hidden Markov model, Lur'e systems, 2D systems}
