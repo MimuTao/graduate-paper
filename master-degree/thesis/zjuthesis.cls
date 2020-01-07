@@ -203,7 +203,7 @@ Created: 2014.09.15 by Sky and Hamburger, Last Modified: 2014.09.12 by Hamburger
 			\c@page
 		\else
 		% 下面这个命令，如果不需要强调这是空白页，或者学校不允许，则可将其注释掉。
-			\ZJU@blankpage
+			% \ZJU@blankpage
 			\thispagestyle{ZJU@empty}%
 			\hbox{}\newpage
 			\if@twocolumn

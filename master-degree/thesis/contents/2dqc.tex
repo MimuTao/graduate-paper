@@ -1,12 +1,12 @@
 % !TEX root = ../thesis.tex
 
-\chapter{二维Markov跳变系统的异步二次型控制}
-	二次型控制也是一种典型的控制方法，近年来，Markov跳变系统的二次型控制问题也得到了广泛的研究并取得了一系列的重要成果\cite{ji1990controllability,costa1999constrained,do2016quadratic}。文献\cite{zabala2019detector}对模态不匹配的1D-Markov跳变系统二次型进行了讨论，探究了不同初始条件的最优成本性能。文献\cite{guan2001robust,dhawan2007optimal,dhawan2010lmi}对2D系统下的Rosser模型和FM模型的保成本控制进行了讨论，并在文献中对初始状态做出了一些基本假设。
+\chapter{模态不匹配2D-Markov跳变系统的异步二次型控制}
+	二次型控制也是一种典型的控制方法，近年来，Markov跳变系统的二次型控制问题也得到了广泛的研究并取得了一系列的重要成果\cite{ji1990controllability,costa1999constrained,do2016quadratic}。文献\cite{zabala2019detector}对模态不匹配的1D-Markov跳变系统二次型进行了讨论，探究了不同初始条件的最优成本性能。文献\cite{guan2001robust,dhawan2007optimal,dhawan2010lmi}对2D系统下的Roesser模型和FM模型的保成本控制进行了讨论，并在文献中对初始状态做出了一些基本假设。
 	
-	本章中，我们将探究基于Rosser模型的2D-Markov跳变系统的二次型控制问题。考虑控制模态同系统模态的不匹配问题，我们引入隐Markov模型设计了一个线性状态反馈控制器。根据2D系统的结构和特性定义了一个成本函数，并根据初始条件的不同情况分别对系统的最优成本性能展开讨论。
+	本章中，我们将探究基于Roesser模型的2D-Markov跳变系统的二次型控制问题。考虑控制模态同系统模态的不匹配情况，我们引入隐Markov模型设计了一个异步线性状态反馈控制器。根据2D系统的结构和特性定义了一个成本函数，并根据初始条件的不同情况分别对系统的最优保成本性能展开讨论。
 
 \section{数学模型及问题描述}
-	本章考虑如下Roesser模型下的二维Markov跳变系统
+	本章考虑如下基于Roesser模型的2D-Markov跳变系统
 	\begin{equation} \label{qc-system-equation}
 	\left\{
 	\begin{array}{lr}
@@ -26,7 +26,7 @@
 	x^{v}(i,j)
 	\end{bmatrix},
 	\end{equation*}
-	这里$x^{h}(i,j)\in\mathbb{R}^{n_1}$，$x^{v}(i,j)\in\mathbb{R}^{n_2}$分别表示水平、垂直方向的系统子状态，$u(i,j)\in\mathbb{R}^{m}$表示系统控制输入，$z(i,j)\in\mathbb{R}^{l}$表示系统被控输出。$A_{r(i,j)}$，$B_{r(i,j)}$，$C_{r(i,j)}$及$D_{r(i,j)}$是具有合适维度的已知系统时变矩阵，并且是$r(i,j)$的函数。$r(i,j)$表示一个随机跳变过程，可以用来表示Markov链，在集合$\mathcal{N}_{1} = \{1,2...N_{1}\}$中取值，并且满足具有如下状态转移概率的状态转移矩阵$\varLambda = \{\lambda_{kp}\}$
+	这里$x^{h}(i,j)\in\mathbb{R}^{n_1}$，$x^{v}(i,j)\in\mathbb{R}^{n_2}$分别表示水平、垂直方向的系统子状态，$u(i,j)\in\mathbb{R}^{m}$表示系统控制输入，$z(i,j)\in\mathbb{R}^{l}$表示系统被控输出。$A_{r(i,j)}$，$B_{r(i,j)}$，$C_{r(i,j)}$及$D_{r(i,j)}$是具有合适维度的已知系统时变矩阵，并且是$r(i,j)$的函数。$r(i,j)$表示一个随机跳变过程，可以用来表示Markov链，在集合$\mathcal{N}_{1} = \{1,2...N_{1}\}$中取值，并且满足具有如下模态转移概率的状态转移矩阵$\varLambda = \{\lambda_{kp}\}$
 	\begin{equation}\label{qc-tps-system}
 	\begin{split}
 	&\Pr\{r(i+1,j)=p|r(i,j)=k\}\\
@@ -43,7 +43,7 @@
 	\right.
 	\end{equation}
 	
-	在实际应用系统中，由于控制器不能完全的获得系统的模态信息，因此，在本章中，我们基于隐Markov模型，设计如下异步控制器
+	在实际应用系统中，由于控制器不能完全的获得系统的模态信息，因此会出现模态不匹配的情况。因此，在本章中我们基于隐Markov模型，设计如下异步控制器
 	\begin{equation}\label{qc-controller}
 	u(i,j) = K_{\sigma(i,j)}x(i,j)，
 	\end{equation}
@@ -51,7 +51,7 @@
 	\begin{equation}
 	\Pr\{\sigma(i,j)=s|r(i,j)=k\}=\mu_{ks }， %\forall  k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}，
 	\end{equation}
-	且，对任意的$k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$，有 $\mu_{k\tau }\in[0,1]$，对任意的$k$，有  $\sum_{s =1}^{N_{2}}\mu_{ks } = 1$。
+	且，对任意的$k\in\mathcal{N}_{1}, s\in\mathcal{N}_{2}$，有 $\mu_{k\tau }\in[0,1]$；对任意的$k$，有  $\sum_{s =1}^{N_{2}}\mu_{ks } = 1$。
 	
 	然后，在本章中，我们对初始条件($X_{0},\varGamma_{0}$)定义如下：
 	\begin{equation*}
@@ -85,7 +85,7 @@
 		\end{array}
 		\right.
 	\end{equation}
-	此时，系统只有有限个非零初始状态。
+	此时，系统只存在有限个非零初始状态。
 	
 	{\bf 假设 \ \ 4.4：}
 	在假设4.3的基础上，我们进一步做如下假设。存在$L(0,j)$，$L(i,0)$，$Z_1$，$Z_2$，使得对任意的$j<l_1,i<l_2$有
@@ -97,10 +97,10 @@
 		\end{array}
 		\right.
 	\end{equation}
-	此时，我们称系统的只有有限个非零初始状态，且每一个非零初始状态都是有界的。
+	此时，我们称系统的只存在有限个非零初始状态，且每一个非零初始状态都是有界的。
 	
 	{\bf 注 \ \ 4.1：}
-	实际上，不难发现，对于任意给定的$x^{h}(0,j)$，$x^{v}(i,0)$，我们总是可以通过选择合适的$Z_1$，$Z_2$及$L(0,j)$，$L(i,0)$对其进行表示。这个初始条件的假设思路已经在文献[123]中使用了，不过，值得注意的是，在上述文献中，都假设水平、垂直状态的初始状态是分别一样的，而在我们的假设中，并没有这么强的约束，因此更加贴近实际情况。
+	实际上，不难发现，对于任意给定的$x^{h}(0,j)$，$x^{v}(i,0)$，我们总是可以通过选择合适的$Z_1$，$Z_2$及$L(0,j)$，$L(i,0)$对其进行表示。这个初始条件的假设思路已经在文献\cite{guan2001robust,dhawan2007optimal,dhawan2010lmi}中使用了。不过，值得注意的是，在上述文献中都假设水平、垂直状态的初始状态是分别一样的，而在我们的假设中，并没有这么强的约束，因此更加贴近实际情况。不难看出，假设4.1是对系统的零初始状态的假设，假设4.2-4.4对系统初始状态逐步进行了约束加强。在本文中，不同的我们主要使用到了假设4.3、4.4。在假设4.3下，我们认为系统的初始状态是有限个的，并且都是以知道；在假设4.4下，我们不仅认为系统的初始状态是有限个的，并且认为他们都满足一个约束条件。
 	
 	下面，我们给出系统\eqref{qc-system-equation}的稳定性及成本函数的定义
 	
@@ -227,18 +227,18 @@
 	至此，定理证明结束。
 	
 	{\bf 注 \ \ 4.2：}
-	仔细检查定理4.1的推导，我们不难发现，其实，假设4.2即可以保证闭环控制系统的稳定性。
+	仔细检查定理4.1的推导，我们不难发现， 假设4.2即可以保证闭环控制系统的稳定性。
 
 
 	{\bf 定理 \ \ 4.2：}
-	考虑闭环控制系统\eqref{qc-closed-system-equation}，当系统初始状态满足假设4.4，初始模态已知时，若对任意的$k\in\mathcal{N}_{1}$，$s\in\mathcal{N}_2$，存在正定矩阵$R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}$，$Q_{ks}$，矩阵$K_{s}$，使得不等式\eqref{qc-T1-1}-\eqref{qc-T1-2}成立，则，系统是渐进均方稳定的，且，相对应的保成本性能为
+	考虑闭环控制系统\eqref{qc-closed-system-equation}，当系统初始状态满足假设4.4，初始模态已知时，若对任意的$k\in\mathcal{N}_{1}$，$s\in\mathcal{N}_2$，存在正定矩阵$R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}$，$Q_{ks}$，矩阵$K_{s}$，使得不等式\eqref{qc-T1-1}-\eqref{qc-T1-2}成立，则系统是渐进均方稳定的，且相对应的保成本性能为
 	\begin{equation}\label{qcT2}
 	\begin{split}
 	J(i,j) \leq \sum_{\varrho_{1}=1}^{N_{1}}\varpi_{\varrho_{1}}\lambda_{max}(Z^{T}_{1}R^{h}_{\varrho_{1}}Z_{1})
 	+\sum_{\varrho_{2}=1}^{N_{1}}\omega_{\varrho_{2}}\lambda_{max}(Z^{T}_{2}R^{v}_{\varrho_{2}}Z_{2})
 	\end{split}
 	\end{equation}
-	这里，$\varrho_{1}$，$\varrho_{2}$分别表示系统、控制器的模态，$\varpi_{\varrho_{1}}$，$\omega_{\varrho_{2}}$分别表示初始模态中，对应的系统模态等于$\varrho_{1}$，控制器模态等于$\varrho_{2}$的数量。
+	这里$\varrho_{1}$，$\varrho_{2}$分别表示系统水平、垂直方向的初始模态，$\varpi_{\varrho_{1}}$，$\omega_{\varrho_{2}}$分别表示初始模态中，对应的水平方向初始模态等于$\varrho_{1}$，垂直方向初始模态等于$\varrho_{2}$的数量。
 	
 	{\bf 证明：} 
 	我们选择跟定理4.1一样的李雅普诺夫函数，稳定性不难发现已经可以由\eqref{qc-T1-1}-\eqref{qc-T1-2}保证。同时，由于假设4.4是在假设4.3基础上的进一步加强，那么不难推出，当系统满足假设4.4时，可以保证\eqref{qcT1C3}成立。由假设4.4，我们同时可以推出
@@ -291,7 +291,7 @@
 	\end{split}
 	\end{equation}
 	{\bf 证明：} 定义$\bar{R}_{k}=R^{-1}_{k}$，$\bar{Q}_{ks}=Q^{-1}_{ks}$，$\bar{K}_s=K^{-1}_s$。
-	对\eqref{qcT3C3}两边同时灯以$\mathrm{diag}\{R^{k},I,\dots,I \}$，可以得到
+	对\eqref{qcT3C3}两边同时乘以$\mathrm{diag}\{R^{k},I,\dots,I \}$，可以得到
 	\begin{equation} 
 	\begin{bmatrix}
 	-R_{k}& \sqrt{u_{k1}}R_{k} &\cdots&\sqrt{u_{kN_2}}R_{k}\\
@@ -311,7 +311,7 @@
 	*&*&*&*&-\bar{R}_{N_1}\\
 	\end{bmatrix}<0
 	\end{equation}
-	使用$\mathrm{diag}\{T^{-1}_s,I,\dots,I \}$及其转置分别左乘，右乘上式，然后再使用Schur补引理，可以推出\eqref{qc-T1-2}成立。
+	使用$\mathrm{diag}\{T^{-1}_s,I,\dots,I \}$及其转置分别左乘、右乘上式，然后再使用Schur补引理，可以推出\eqref{qc-T1-2}成立。
 	这样，系统的稳定性可以保证。
 	根据假设4.3，由于系统的初始模态并不知道，我们无法确定系统每个模态对应的数量。因此，我们需要对任意的系统模态下，$\lambda_{max}(Z^{T}_{1}R^{h}_{\varrho_{1}}Z_{1})$，$\lambda_{max}(Z^{T}_{2}R^{v}_{\varrho_{2}}Z_{2})$分别得到确定一个统一的上界。
 	由\eqref{qcT3C1}-\eqref{qcT3C2}可以得到
@@ -320,7 +320,7 @@
 			&Z^{T}_1R^{h}_{k}Z_1<\lambda_1I,\\ &Z^{T}_2R^{v}_{k}Z_2<\lambda_2I	
 		\end{split}
 	\end{equation}
-	这里，$\lambda_1$是对全部系统模态，$\lambda_{max}(Z^{T}_{1}R^{h}_{\varrho_{1}}Z_{1})$的上界，$\lambda_2$是对全部系统模态，$\lambda_{max}(Z^{T}_{2}R^{v}_{\varrho_{2}}Z_{2})$的上界。
+	这里，$\lambda_1$是对全部水平方向系统初始模态$\lambda_{max}(Z^{T}_{1}R^{h}_{\varrho_{1}}Z_{1})$的上界，$\lambda_2$是对全部垂直方向系统初始模态$\lambda_{max}(Z^{T}_{2}R^{v}_{\varrho_{2}}Z_{2})$的上界。
 	因此，由\eqref{qcT2}可以推出
 	\begin{equation}
 		J(i,j) \leq l_1\lambda_1 + l_2\lambda_2
@@ -335,7 +335,7 @@
 	然后通过$K_s=\bar{K}_sT^{-1}_s$来求解出异步控制器增益。
 
 \section{数值例子}
-	在本节，我们将选择一个简单的数值仿真例子，来验证设计的异步二次型控制器的有效性。首先，我们选择控制器模态、系统模态都为2，即$N_1=N_2=2$。然后选择系统参数如下
+	在本节，我们将提供一个简单的数值仿真例子来验证设计的异步二次型控制器的有效性。首先，我们选择控制器模态、系统模态都为2，即$N_1=N_2=2$。然后选择系统参数如下
 	
 	模态一：
 	\begin{equation} \notag
@@ -402,7 +402,7 @@
 	
 	根据假设4.4，我们不难发现，对任意的$i\leq10,j\leq10$，可以选择$L(i,0)=L(0,j)=1$，相应的$Z_1=Z_2=0.1$。
 	
-	当没有施加异步控制器时，系统在水平方向、垂直方向的状态轨迹分别绘制于图\ref{figqchstate}、图\ref{figqcvstate}中。不难发现，当$u(i,j)=0$，即不施加控制反馈作用时，系统水平方向、垂直方向的状态轨迹都是离散的，表明，此时系统不稳定。
+	当没有施加异步控制器时，系统在水平方向、垂直方向的状态轨迹分别绘制于图\ref{figqchstate}、图\ref{figqcvstate}中。不难发现，当$u(i,j)=0$，即不施加控制反馈作用时，系统水平方向、垂直方向的状态轨迹都是离散的，表明此时系统不稳定。
 	
 	\begin{figure}[!htb]
 		\centering\includegraphics[scale=0.6]{./figures/qc/simulation/hstateU0.eps}\\ 
@@ -434,7 +434,7 @@
 	\end{bmatrix}
 	\end{equation*}
 	
-	同时，系统的最小保成本性能$J^{*}=0.4512$。然后，施加了控制器以后的系统水平、垂直状态轨迹分别绘制于图\ref{figqchstate1}、图\ref{figqcvstate1}中。显然，当施加了异步二次型控制器以后，系统在水平、垂直方向的状态轨迹都收敛了，表明，此时系统是稳定的。同时，控制作用$u(i,j)$在水平方向、垂直方向的作用效果分别绘制于图\ref{figqcuh}、图\ref{figqcuv}中。综合仿真结果，可以得出结论，本章中设计的控制器是有效的。
+	同时，系统的最小保成本性能$J^{*}=0.4512$。然后，施加了控制器以后的系统水平、垂直状态轨迹分别绘制于图\ref{figqchstate1}、图\ref{figqcvstate1}中。显然，当施加了异步二次型控制器后系统在水平、垂直方向的状态轨迹都收敛了，表明此时系统是稳定的。同时，控制作用$u(i,j)$在水平方向、垂直方向的作用效果分别绘制于图\ref{figqcuh}、图\ref{figqcuv}中。综合仿真结果，可以得出结论，本章中设计的控制器是有效的。
 	\begin{figure}[!htb]
 		\centering\includegraphics[scale=0.6]{./figures/qc/simulation/hstate.eps}\\ 
 		\caption{异步二次型控制下的水平状态 $x^{h}(i,j)$}
@@ -449,17 +449,17 @@
 	
 	\begin{figure}[!htb]
 		\centering\includegraphics[scale=0.6]{./figures/qc/simulation/hU.eps}\\ 
-		\caption{水平控制$u^{v}(i,j)$}
+		\caption{水方向平控制$u^{v}(i,j)$}
 		\label{figqcuh}
 	\end{figure}
 	
 	\begin{figure}[!htb]
 		\centering\includegraphics[scale=0.6]{./figures/qc/simulation/vH.eps}\\ 
-		\caption{垂直控制$u^{v}(i,j)$}
+		\caption{垂直方向控制$u^{v}(i,j)$}
 		\label{figqcuv}
 	\end{figure}
 
 \section{小结} \label{conclusion} 	
-	本章我们研究了Roesser模型下的二维Markov跳变系统的异步二次型控制问题。考虑到控制器不能获得完整的系统模态信息，存在控制器模态和系统模态不匹配的现象，因此我们基于隐Markov模型设计了异步二次型控制器。借助线性矩阵不等式及李雅普诺夫函数方法，我们对三种不同的初始条件展开了讨论，分别得到了不同情况下的的最优保成本性能。同时，不管初始条件如何，系统都是渐进均方稳定的。
+	本章我们研究了Roesser模型下的2D-Markov跳变系统的异步二次型控制问题。考虑到控制器不能获得完整的系统模态信息，存在控制器模态和系统模态不匹配的现象，我们基于隐Markov模型设计了异步二次型控制器。借助LMI及Lyapunov方法，我们对三种不同的初始条件展开了讨论，分别得到了不同情况下的的最优保成本性能。同时，不管初始条件如何，系统都是渐进均方稳定的。
 	
 	

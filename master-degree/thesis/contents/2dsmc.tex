@@ -1,16 +1,16 @@
 % !TEX root = ../thesis.tex
 
-\chapter{二维Markov跳变系统的异步滑模控制}
-	在实际应用中，信息的传递可能会沿着多个维度传递，这样的系统我们称之为多维控制系统。当系统信息的传递方向只有两个的时候，我们称这样的多维系统为二维(2D)控制系统。2D控制系统的历史可以追溯到上个世纪70年代，现在已经已经被用来处理各种各样的实际应用，例如数字图像处理，偏微分方程建模和信号滤波\cite{roesser1975discrete,marszalek1984two,rogers2015multidimensional}等。同一维(1D)系统不同的是，二维系统的信息会沿着两个不同的方向传递，并且这两个方向的信息会相互作用，这意味着2D系统相对1D系统更加复杂，分析起来也更加困难。 为了来表述2D系统的特殊结构和性质，学者们提出了一些基于状态空间的数学模型，其中比较流行的是Roesser模型 \cite{roesser1975discrete} 和 Fornasini-Marchesini 模型 \cite{fornasini1978doubly}。在Roesser模型中，系统状态由水平状态和垂直状态这两个独立的子状态组成，可以从当前状态分别推导出不同方向上的下一个水平状态和垂直状态。 与Roesser模型不同，Fornasini-Marchesini模型中的系统状态并不区分水平、垂直子状态，而是用一个向量来表示两个方向的信息，即该向量是具有两个独立变量的函数，并且当前系统状态是从它的左边相邻、下方相邻状态得到的。 在大多数情况下，Roesser模型可以看作是Fornasini-Marchesini模型的特例，但Rosser模型的表达形式更加直观，更容易理解，在某些情况下更便于系统分析。Du等人在文献\cite{du2001h,du2002hinfinity}中利用2D有界实引理建立了2D系统的$H_\infty$控制理论。随后，一些学者将这个成果推广到了具有时变延迟\cite{trinh2016stability}、多类噪声\cite{ahn2016stochastic}、不确定模态转移参数 \cite{chesi2016robust}等2D系统的控制、滤波问题中。Anh在文献\cite{ahn2015two}中，可以矩阵先行不等式方法研究了2D-Makrov跳变系统的无源控制和滤波问题。
+\chapter{模态不匹配2D-Markov跳变系统的异步滑模控制}
+	在实际应用中，信息的传递可能会沿着多个维度传递，这样的系统我们称之为多维控制系统。当系统信息的传递方向只有两个的时候，我们称这样的多维系统为二维(2D)控制系统。2D控制系统的历史可以追溯到上个世纪70年代，现在已经被用来处理各种各样的实际应用，例如数字图像处理、偏微分方程建模和信号滤波\cite{roesser1975discrete,marszalek1984two,rogers2015multidimensional}等。同一维(1D)系统不同的是，二维系统的信息会沿着两个不同的方向传递，并且这两个方向的信息会相互作用，这意味着2D系统相对1D系统更加复杂，分析起来也更加困难。 为了描述2D系统的特殊结构和性质，学者们提出了一些基于状态空间的数学模型，其中比较流行的是Roesser模型 \cite{roesser1975discrete} 和 Fornasini-Marchesini 模型 \cite{fornasini1978doubly}。在Roesser模型中，系统状态由水平状态和垂直状态这两个独立的子状态组成，可以从当前状态分别推导出不同方向上的下一个水平状态和垂直状态。 与Roesser模型不同，Fornasini-Marchesini模型中的系统状态并不区分水平、垂直子状态，而是用一个向量来表示两个方向的信息，即该向量是具有两个独立变量的函数，并且当前系统状态是从它的左边相邻、下方相邻状态得到的。 在大多数情况下，Roesser模型可以看作是Fornasini-Marchesini模型的特例，但Rosser模型的表达形式更加直观，更容易理解，在某些情况下更便于系统分析。Du等人在文献\cite{du2001h,du2002hinfinity}中利用2D有界实引理建立了2D系统的$H_\infty$控制理论。随后，一些学者将这个成果推广到了具有时变延迟\cite{trinh2016stability}、多类噪声\cite{ahn2016stochastic}、不确定模态转移参数 \cite{chesi2016robust}等2D系统的控制、滤波问题中。Anh在文献\cite{ahn2015two}中，利用矩阵线性不等式方法研究了2D-Makrov跳变系统的无源控制和滤波问题。
 	
-	另一方面，滑模控制(SMC)是一种非常有效的控制技术。由于它对参数变化，外部干扰和模型不确定性具有强大的鲁棒性，已成功应用于各种实际系统中\cite{utkin2009sliding,yang1999sliding,shima2006sliding}。滑模控制的主要思想是，首先构造一个滑模面，然后根据这个滑模面设计一个不连续的控制率，在该控制率的作用下，系统状态会不断的向滑模面靠近，最终达到滑模面或者进入到滑模面的某个领域内\cite{edwards1998sliding}。近年来，学者们对滑模控制进行了深入的研究，并对Markov跳变系统取得了一系列重要的成果\cite{li2015state,wu2010state,wang2017smc}。最近，一些学者对1D-Markov跳变系统模态不匹配的滑模控制问题进行了研究\cite{song2018asynchronous,li2017passivity,qi2018observer}。2D-Markov跳变系统的滑模控制问题也同样吸引了一些学者的兴趣。如文献\cite{gao2004stabilization,wu2018hcontrol2d,wu2008hfiltering2d,wu2006modelreduction,shen2019dissipativity}对2D-Markov跳变系统的$H_\infty$控制、$H_\infty$滤波、$H_\infty$模型推导、故障检测等问题进行了讨论。但是目前为止，尚且没有文章研究2D-Markov跳变系统的滑模控制问题。
+	另一方面，滑模控制(SMC)是一种非常有效的控制技术。由于它对参数变化、外部干扰和不确定模型具有强大的鲁棒性，已成功应用于各种实际系统中\cite{utkin2009sliding,yang1999sliding,shima2006sliding}。滑模控制的主要思想是，首先构造一个滑模面，然后根据这个滑模面设计一个不连续的控制率，在该控制率的作用下，系统状态会不断的向滑模面靠近，最终达到滑模面或者进入到滑模面的某个领域内\cite{edwards1998sliding}。近年来，学者们对滑模控制进行了深入的研究，并针对Markov跳变系统取得了一系列重要的成果\cite{li2015state,wu2010state,wang2017smc}。一些学者对1D-Markov跳变系统模态不匹配的滑模控制问题进行了研究\cite{song2018asynchronous,li2017passivity,qi2018observer}。2D-Markov跳变系统同样吸引了一些学者的兴趣。如文献\cite{gao2004stabilization,wu2018hcontrol2d,wu2008hfiltering2d,wu2006modelreduction,shen2019dissipativity}分别对2D-Markov跳变系统的$H_\infty$控制、$H_\infty$滤波、$H_\infty$模型推导、故障检测等问题进行了讨论。但是到目前为止，尚且没有文章研究2D-Markov跳变系统的滑模控制问题。
 	
-	本章中，我们将研究2D-Markov跳变系统的滑模控制问题。考虑到2D系统的特殊结构和特性，我们将构造一个全新的2D滑模控制面。另一方面，考虑控制器模态同系统模态的不匹配问题，我们引入隐马尔可夫模型来设计滑模控制器。同时，我们将对考虑系统的稳定性、$H_\infty$性能、系统状态到滑模面的可达性等问题分别展开讨论。
+	本章中，我们将研究2D-Markov跳变系统的滑模控制问题。考虑到2D系统的特殊结构和特性，我们将构造一个全新的2D滑模面。另一方面，考虑控制器模态同系统模态的不匹配问题，我们引入隐马尔可夫模型来设计滑模控制器。同时，我们将对系统的稳定性、$H_\infty$性能、系统状态到滑模面的可达性等问题分别展开讨论。
 
 \section{数学模型及问题描述}
-	本章考虑如下由Rosser模型描述二维跳变系统：
+	本章考虑如下由Roesser模型描述2D-Markov跳变系统：
 	\begin{equation} \label{system-equation}
-	\left\{
+	\left\{ 
 	\begin{array}{lr}
 	\begin{split}
 	\emph{\textbf{x(i, j)}} = A_{r(i,j)}x(i,j)+B_{r(i,j)}[(u(i,j)+f(x(i,j),r(i,j))]+E_{r(i,j)}w(i,j),
@@ -32,7 +32,7 @@
 	x^{v}(i,j)
 	\end{bmatrix}          
 	\end{equation*}
-	这里，	$x^{h}(i,j)\in \mathbb{R}^{n_h}$， $x^{v}(i,j)\in \mathbb{R}^{n_v}$ 分别表示水平、垂直两个子系统状态， $u(i,j) \in \mathbb{R}^{n_u}$，$y(i,j) \in \mathbb{R}^{n_y}$ 分别表示控制输入和被控输出， 以及 $w(i,j) \in \mathbb{R}^{n_w}$ 表示外部扰动，并满足 $\ell_{2}\{[0,\infty),[0,\infty)\}$。 $A_{r(i,j)}$, $B_{r(i,j)}$， $C_{r(i,j)}$， $D_{r(i,j)}$ 及 $E_{r(i,j)}$ 表示已知具有合适维度的系统时变矩阵。 同时，我们假设，对任意的 $r(i,j)\in\mathcal{N}_{1}$，矩阵$B_{r(i,j)}$是列满秩的，即，rank($B_{r(i,j)}$)$=n_u$。 非线性函数 $f(x(i,j),r(i,j))$ 满足
+	这里，	$x^{h}(i,j)\in \mathbb{R}^{n_h}$， $x^{v}(i,j)\in \mathbb{R}^{n_v}$ 分别表示水平、垂直两个方向的子系统状态， $u(i,j) \in \mathbb{R}^{n_u}$，$y(i,j) \in \mathbb{R}^{n_y}$ 分别表示控制输入和被控输出， 以及 $w(i,j) \in \mathbb{R}^{n_w}$ 表示外部扰动，并满足条件$\ell_{2}\{[0,\infty),[0,\infty)\}$。 $A_{r(i,j)}$, $B_{r(i,j)}$， $C_{r(i,j)}$， $D_{r(i,j)}$ 及 $E_{r(i,j)}$ 表示已知具有合适维度的系统时变矩阵。 同时，我们假设对任意的 $r(i,j)\in\mathcal{N}_{1}$，矩阵$B_{r(i,j)}$是列满秩的，即rank($B_{r(i,j)}$)$=n_u$。 非线性函数 $f(x(i,j),r(i,j))$ 满足
 	\begin{equation}\label{nonlinear-func}
 	\|f(x(i,j),r(i,j)\| \leq \delta_{r(i,j)}\|x(i,j)\|
 	\end{equation}
@@ -46,7 +46,7 @@
 	这里，对任意的  $k, p\in\mathcal{N}_{1}$， $\lambda_{kp}\in[0,1]$，且对任意的 $k$，有$\sum_{p=1}^{N_1}\lambda_{kp}=1$。
 	
 	{\bf 注 \ \ 3.1：}
-	注意到，条件\eqref{tps_system} 包含了一个隐含的假设，即，模态沿着水平、垂直方向的跳变概率是一样的。
+	注意到，条件\eqref{tps_system} 包含了一个隐含的假设，即系统模态沿着水平、垂直方向的跳变概率是一样的。
 	
 	下面我们对2D系统\eqref{system-equation}的初始条件 ($X_{0},\varGamma_{0}$) 做以下假设
 	\begin{equation} \label{boundary-condition}
@@ -60,7 +60,7 @@
 	\right.
 	\end{equation}
 	
-	系统状态的零初始$X_0$条件设置为，对任意非负整数$i,j$，$x^{h}(0,j) =0, x^{v}(i,0)=0$。此外，对$X_{0}$施加如下假设
+	系统状态的零初始条件$X_0$设置为，对任意非负整数$i,j$，$x^{h}(0,j) =0, x^{v}(i,0)=0$。此外，对$X_{0}$施加如下假设
 	
 	{\bf 假设 \ \ 3.1：}
 	边界条件$X_{0}$满足
@@ -69,14 +69,14 @@
 	\end{equation}
 	其中，$\mathbb{E}\{\cdot\}$表示数学期望。
 	
-	在实际控制系统中，控制器往往不能获得系统模态$r(i,j)$的全部信息。因此，在本章中，我们采用了隐Markov模型$(r(i,j),\sigma(i,j),\varLambda,\varPsi)$来描述控制器模态和系统模态之间存在的异步现象。这里，我们使用$\sigma(i,j)$来表示控制器模态，它在另一个集合$\mathcal{N}_{2} = \{1,2...N_{2}\}$中取值，且满足条件模态转移矩阵$\varPsi=[\mu_{k\tau} ]$，该矩阵对应的条件模态转移概率为
+	在实际控制系统中，控制器往往不能获得系统模态$r(i,j)$的全部信息。因此，在本章中，我们采用了隐Markov模型$(r(i,j),\sigma(i,j),\varLambda,\varPsi)$来描述控制器模态和系统模态之间存在的不匹配现象。这里，我们使用$\sigma(i,j)$来表示控制器模态，它在另一个集合$\mathcal{N}_{2} = \{1,2...N_{2}\}$中取值，且满足条件模态转移矩阵$\varPsi=[\mu_{k\tau} ]$，该矩阵对应的条件模态转移概率为
 	\begin{equation}
 	\Pr\{\sigma(i,j)=\tau|r(i,j)=k\}=\mu_{k\tau } %\forall  k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}
 	\end{equation}
 	这里，对任意的$k\in\mathcal{N}_{1}$，$\tau\in\mathcal{N}_{2}$， 有$\mu_{k\tau }\in[0,1]$，且对任意的模态$k$，有 $\sum_{\tau =1}^{N_{2}}\mu_{k\tau } = 1$ 。
 	
 	{\bf 注 \ \ 3.2：}
-	隐Markov模型是一个包含了同步、异步及模态独立情况的综合模型。控制器属于哪种情况可由条件模态转移概率矩阵$\varPsi$来决定。当$\varPsi=\varLambda$时，控制器变成了一个模态同步控制器，当$\mathcal{N}_{2}=\{1\}$时，控制器变成了一个只包含一个模态的模态独立控制器。因此，我们得到的结果可以通过该表矩阵$\varPsi$，很容易的推广到同步和模态独立的情况。
+	隐Markov模型是一个包含了同步、异步及模态独立情况的综合模型。控制器属于哪种情况可由条件模态转移概率矩阵$\varPsi$来决定。当$\varPsi=\varLambda$时，控制器变成了一个模态同步控制器，当$\mathcal{N}_{2}=\{1\}$时，控制器变成了一个只包含一个模态的模态独立控制器。因此，我们得到的结果可以通过调节矩阵$\varPsi$，很容易推广到同步和模态独立的情况。
 	
 	下面，我们分别给出系统渐进均方稳定和 $H_{\infty}$ 性能的定义。	
 	
@@ -85,21 +85,21 @@
 	\begin{equation}\label{AMSS}
 	\lim\limits_{i+j\to\infty}\mathbb{E}\{\|x(i,j)\|^{2}\} = 0
 	\end{equation}
-	我们称，在假设3.1意义下的二维Markov跳变系统 \eqref{system-equation}是渐进均方稳定的。
+	我们称，在假设3.1意义下的2D-Markov跳变系统 \eqref{system-equation}是渐进均方稳定的。
 	
 	{\bf 定义 \ \ 3.2：}
 	给定标量 $\gamma>0$，如果条件 \eqref{AMSS}及下面的公式在$w(i,j)\in\ell_{2}\{[0,\infty),[0,\infty)\}$时成立，
 	\begin{equation} \label{invDef2}
 	\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|y(i,j)\|^{2}\} <  \gamma^{2} \sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\mathbb\{\|w(i,j)\|^{2}\}
 	\end{equation}
-	我们称，在零初始条件下的二维Markov跳变系统\eqref{system-equation}是渐进均方稳定的，同时满足$H_{\infty}$性能$\gamma$。
+	我们称，在零初始条件下的2D-Markov跳变系统\eqref{system-equation}是渐进均方稳定的，同时满足$H_{\infty}$性能$\gamma$。
 
 	为了方便后续的推导，我们这里做一些符号简化。我们使用$k$来表示参数$r(i,j)$，使用$\tau$来表示$\sigma(i,j)$ 。
 
-	本章的目的是，基于隐Markov模模型，设计一个二维异步控制器，使得对应的Markov跳变系统是随机稳定的，并满足一定的$H_{\infty}$性能。
+	本章的目的是，基于隐Markov模型，设计一个二维异步控制器，使得对应的Markov跳变系统是随机稳定的，并满足一定的$H_{\infty}$性能。
 	
 \section{主要成果}
-	在本节，我们首先根据2D系统的结构特征，构造一个新颖的2D滑模面，同时基于隐Markov模型设计出对应的2D滑模控制器。之后，我们会分析系统的渐进均方稳定性，$H_{\infty}$性能，以及滑模面的可达性。
+	在本节，我们首先根据2D系统的结构特征，构造一个新颖的2D滑模面，同时基于隐Markov模型设计出对应的2D滑模控制器。之后，我们会分析系统的渐进均方稳定性，$H_{\infty}$性能，以及系统状态到滑模面的可达性。
 
 \subsection{滑模面构造及异步2D滑模控制器设计} \label{sliding-surface}
 	在本章中，我们根据2D系统的特性构造如下滑模面
@@ -110,9 +110,9 @@
 	\end{bmatrix}
 	= Gx(i,j)
 	\end{equation}
-	这里，$s^{h}(i,j)$、 $s^{v}(i,j)$分别代表水平、垂直方向的子滑模面，矩阵$G=\sum_{k=1}^{N_{1}}\beta_{k}B^{T}_{k}$， 同时，我们应该选择合适的 $\beta_{k}$ 使得矩阵$GB_{k}$ 对任意的$k\in\mathcal{N}_{1}$都是非齐次的。 根据假设 $B_{k}$ 对任意的$k\in\mathcal{N}_{1}$是列满秩的， 我们可以推测，只要选择合适的 $\beta_{k}$就一定可以使得上述要求得以满足。 
+	这里，$s^{h}(i,j)$、 $s^{v}(i,j)$分别代表水平、垂直方向的子滑模面，矩阵$G=\sum_{k=1}^{N_{1}}\beta_{k}B^{T}_{k}$。 这里需要注意的是，我们应该选择合适的 $\beta_{k}$ 使得矩阵$GB_{k}$ 对任意的$k\in\mathcal{N}_{1}$都是非齐次的。 根据假设 $B_{k}$ 对任意的$k\in\mathcal{N}_{1}$是列满秩的， 因此只要选择合适的 $\beta_{k}$就一定可以使得上述要求得以满足。 
 	
-	考虑到控制器不能完全获得系统模态信息，因此，我们设计如下的异步2D滑模控制器
+	考虑到控制器模态同系统模态的不匹配问题，设计如下的异步2D滑模控制器
 	\begin{equation}\label{smc-law}
 	u(i,j) = K_{\tau }x(i,j)-\rho(i,j)\frac{s(i,j)}{\|s(i,j)\|}
 	\end{equation}
@@ -122,7 +122,7 @@
 	\end{equation}
 	其中， $\varrho_{1}=\max_{k\in\mathcal{N}_{1}} \{\delta_{k} \}$， $\varrho_{2} = \max_{k\in\mathcal{N}_{1}}\{\|(GB_{k})^{-1}GE_{k}\| \} $， 参数 $\delta_{k}$ 在条件\eqref{nonlinear-func}中已经给出。 
 	
-	由系统方程\eqref{system-equation}及异步2D控制器\eqref{siding-surface-equation}，我们可以得到如下闭环二维Markov跳变系统
+	由系统方程\eqref{system-equation}及异步2D控制器\eqref{smc-law}，我们可以得到如下闭环2D-Markov跳变系统
 	\begin{equation} \label{closed-loop-system-equation}
 	\emph{\textbf{x(i, j)}} = \bar{A}_{k\tau }x(i,j)+B_{k}\bar{\rho}_{k}(i,j)+E_{k}w(i,j)
 	\end{equation}
@@ -140,16 +140,16 @@
 	\end{equation}	
 	
 	{\bf 注 \ \ 3.3：}
-	本文设计的控制器基于隐Markov模型 $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$，在这个模型下，系统的模态由Markov过程$\{r(i,j), i,j=1,2\ \dots\}$控制，而控制器的模态则由条件转移概率$u_{k\tau}$得到，条件模态转移概率矩阵$\varPsi$建立了系统模态和控制器模态之间的联系，这是异步控制器优于模态独立控制器的一个重要因素。
+	本文设计的控制器基于隐Markov模型 $(r(i,j),\sigma(i,j),\varLambda,\varPsi)$，在这个模型下，系统的模态由Markov过程$\{r(i,j), i,j=1,2\ \dots\}$控制，而控制器的模态则由条件转移概率$u_{k\tau}$得到，条件模态转移概率矩阵$\varPsi$建立了系统模态和控制器模态之间的联系，相比模态独立控制器更充分的利用了系统的模态信息，这是异步控制器相比模态独立控制器的一个优势。
 	
 	{\bf 注 \ \ 3.4：}
-	正如在前文中所介绍的，1D滑模控问题已经获得了广泛的研究，比如文献\cite{song2018asynchronous,li2017passivity,qi2018observer}等。但是，值得注意的是，2D滑模控制(不仅仅是异步控制)问题目前还没有人进行研究。实际上，2D系统的特殊性质，系统分析带来了更大的复杂性，1D系统得到的诸多结论不能直接的推广到2D系统中来，2D系统的滑模控制问题相对1D系统更加的复杂。因此，我们需要从2D系统的结构出发，来研究2D系统的滑模控制问题。在本章中，我们基于Roesser模型的2D系统特性，重新的设计了一个二维滑模面$s(i,j)$，由于2D滑模控制器继承了 $x(i,j)$ 及 $s(i,j)$，因此我们称呼设计的滑模控制器是二维控制器。
+	正如在前文中所介绍的，1D滑模控问题已经获得了广泛的研究，比如文献\cite{song2018asynchronous,li2017passivity,qi2018observer}等。但是值得注意的是，2D滑模控制(不仅仅是异步控制)问题目前还没有人进行研究。实际上，2D系统的特殊性质给系统分析带来了更大的复杂性，1D系统得到的诸多结论不能直接的推广到2D系统中来，2D系统的滑模控制问题相对1D系统更加的复杂。因此我们需要从2D系统的结构出发，来研究2D系统的滑模控制问题。在本章中，我们基于Roesser模型的2D系统特性，重新的设计了一个二维滑模面$s(i,j)$，由于2D滑模控制率包含了 $x(i,j)$ 、$s(i,j)$，因此我们称所设计的滑模控制器是2D滑模控制器。
 
 \subsection{稳定性及 $H_{\infty}$ 性能分析 } \label{stability&H_infty}	
-	在本小节，我们关注与闭环2D-Markov跳变系统\eqref{closed-loop-system-equation}的稳定性及$H_{\infty}$ 性能分析。我们将会提出一个充分条件，使得系统渐进均方稳定，且满足一个$H_{\infty}$ 性能 $\gamma$。
+	在本小节，我们将关注闭环2D-Markov跳变系统\eqref{closed-loop-system-equation}的稳定性及$H_{\infty}$ 性能分析。我们将会提出一个充分条件，使得系统渐进均方稳定，且满足一个$H_{\infty}$ 性能 $\gamma$。
 	
 	{\bf 定理 \ \ 3.1：}
-	考虑满足假设3.1，且具有异步控制器\eqref{smc-law}的2D控制系统\eqref{system-equation}。 对任意的$k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$，给定标量 $\gamma>0$，如果存在矩阵 $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$，  $R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}>0$，  $Q_{k\tau }>0$, $T_{k\tau }>0$ ，标量$\epsilon_{k}>0$， 对任意的 $k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$,  有下列不等式成立
+	考虑满足假设3.1，在2D异步滑模控制率\eqref{smc-law}作用下的2D控制系统\eqref{system-equation}。 对任意的$k\in\mathcal{N}_{1}, \tau\in\mathcal{N}_{2}$，给定标量 $\gamma>0$，如果存在矩阵 $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$，  $R_{k}=\mathrm{diag}\{R^{h}_{k},R^{v}_{k}\}>0$，  $Q_{k\tau }>0$, $T_{k\tau }>0$ ，标量$\epsilon_{k}>0$， 有下列不等式成立
 	\begin{equation}\label{T1C1}
 	B^{T}_{k}  	\mathcal{R}_{k} B_{k} -\epsilon_{k}I \leq 0
 	\end{equation}
@@ -179,18 +179,18 @@
 	\end{equation*}
 	这里，$\mathcal{R}_{k}=\sum_{p=1}^{N1}\lambda_{kp}R_{p}$， $\hat{A}_{k\tau }=\begin{bmatrix}
 	\bar{A}_{k\tau }& E_{k}
-	\end{bmatrix}$, 
-	那么，我们称闭环2D控制系统\eqref{closed-loop-system-equation} 是渐进均方稳定的，且满足 $H_{\infty}$性能$\gamma$。
+	\end{bmatrix}$。
+	那么，我们称闭环2D-Markov跳变系统\eqref{closed-loop-system-equation} 是渐进均方稳定的，且满足 $H_{\infty}$性能$\gamma$。
 	
 	{\bf 证明：} 
-	我们首先来研究系统的稳定性问题。 选择李雅普诺夫函数为 $V_{1}(i,j) = x^{T}(i,j)R_{r(i,j)}x(i,j)$，定义
+	我们首先来研究系统的稳定性问题。 选择李雅普诺夫函数为 $V_{1}(i,j) = x^{T}(i,j)R_{r(i,j)}x(i,j)$，并定义
 	\begin{equation}\label{VAR-DELTA-V1}
 	\begin{split}
 	\varDelta V_{1}(i,j) = \emph{\textbf{x(i, j)}}^{T} R^{*}(i,j) \emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j)
 	\end{split}
 	\end{equation}
-	这里，$R^{*}(i,j)=\mathrm{diag}\{R^{h}_{r(i+1,j)},R^{v}_{r(i,j+1)}\}$.\\
-	由闭环控制系统 \eqref{closed-loop-system-equation}在$w(i,j)=0$时，我们可以得到 
+	这里，$R^{*}(i,j)=\mathrm{diag}\{R^{h}_{r(i+1,j)},R^{v}_{r(i,j+1)}\}$。\\
+	在$w(i,j)=0$时，由闭环控制系统 \eqref{closed-loop-system-equation}，我们可以得到 
 	\begin{equation}
 	\begin{split}
 	\mathbb{E}\{\varDelta V_{1}(i,j) \}&=\mathbb{E}\{\emph{\textbf{x(i, j)}}^{T}\mathcal{R}_{k}\emph{\textbf{x(i, j)}} - x^{T}(i,j)R_{k}x(i,j) \} \\
@@ -201,15 +201,15 @@
 	&-  x^{T}(i,j)R_{k}x(i,j)
 	\end{split}
 	\end{equation}
-	由条件\eqref{norm-rho-inequality} 及\eqref{T1C1}，可以推出
+	由条件\eqref{norm-rho-inequality} 、\eqref{T1C1}，可以推出
 	\begin{equation}\label{combine-one-1}
 	\begin{split}
 	\mathbb{E}\{\varDelta  V_{1}(i,j) \} \leq x^{T}(i,j)\mathcal{G}_{k\tau }x(i,j)
 	\end{split}
 	\end{equation}
 	其中， $\mathcal{G}_{k\tau }= 2\big(\sum_{\tau =1}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }\mathcal{R}_{k}\bar{A}_{k\tau }\big)
-	+ 2\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I- R_{k}$.
-	根据正定矩阵的性质，我们可以由 \eqref{T1C2} ) 推出
+	+ 2\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I- R_{k}$。
+	根据正定矩阵的性质，可以由 \eqref{T1C2} ) 推出
 	\begin{equation}
 	2\big(\sum_{\tau =1}^{N_{2}}\mu_{k\tau }Q_{k\tau }\big)+4\epsilon_{k}(\delta_{k}+\varrho_{1})^{2}I+C^{T}_{k}C_{k}-R_{k} < 0
 	\end{equation}
@@ -221,7 +221,7 @@
 	\begin{equation}\label{combine-one-3}
 	\bar{A}^{T}_{k\tau }\mathcal{R}_{k}\bar{A}_{k\tau }-Q_{k\tau } < 0
 	\end{equation}
-	由\eqref{combine-one-2} 及\eqref{combine-one-3}我们可以推出 $\mathcal{G}_{k\tau }<0$， 等价于
+	由\eqref{combine-one-2}、\eqref{combine-one-3} 可以发现 $\mathcal{G}_{k\tau }<0$， 等价于
 	\begin{equation}
 	\mathcal{G}_{k\tau } \leq -\alpha I
 	\end{equation}
@@ -234,7 +234,7 @@
 	\begin{equation} \label{levE}
 	\mathbb{E}\Big\{\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \|x(i,j)\|^{2} \Big\} \leq -\frac{1}{\alpha} \mathbb{E}\Big\{\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \varDelta V_{1}(i,j)  \Big\}
 	\end{equation}
-	其中 $\hat{\kappa}_{1}$, $\hat{\kappa}_{2}$ 是任意的正整数。 用 \eqref{VAR-DELTA-V1} 来代替 $\varDelta V_{1}$，同时，令 $R_{k}=\mathrm{diag}\{R^{\rm{h}}_{k},R^{\rm{v}}_{k}\}$ (见定理3.1) ，可以推出
+	这里 $\hat{\kappa}_{1}$, $\hat{\kappa}_{2}$ 是任意的正整数。 用 \eqref{VAR-DELTA-V1} 来代替 $\varDelta V_{1}$，同时，令 $R_{k}=\mathrm{diag}\{R^{\rm{h}}_{k},R^{\rm{v}}_{k}\}$ (见定理3.1) ，可以推出
 	\begin{equation} \label{Vhv}
 	\begin{split}
 	&\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \varDelta V_{1}(i,j)\\&= \sum_{i=0}^{\hat{\kappa}_{1}}\big\{V^{v}_{1}(i,\hat{\kappa}_{2}+1) - V^{v}_{1}(i,0) \big\}+  \sum_{j=0}^{\hat{\kappa}_{2}}\big\{V^{h}_{1}(\hat{\kappa}_{1}+1,j) - V^{h}_{1}(0,j) \big\}\\
@@ -242,7 +242,7 @@
 	%			&\leq -\beta \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)
 	\end{split}
 	\end{equation} 
-	这里，我们定义$V_{1}^{h}(i,j)$ 及 $V_{1}^{v}(i,j)$ 如下  
+	这里，我们定义$V_{1}^{h}(i,j)$ 和 $V_{1}^{v}(i,j)$ 如下  
 	\begin{equation*}
 	\left\{
 	\begin{array}{lr}
@@ -259,7 +259,7 @@
 	\mathbb{E}\Big\{\sum_{i=0}^{\hat{\kappa}_{1}}\sum_{j=0}^{\hat{\kappa}_{2}}  \|x(i,j)\|^{2} \Big\} &\leq \frac{\beta}{\alpha} \sum_{\ell=0}^{\infty} \big(  \|x^{v}(\ell,0)\|^{2} + \|x^{h}(0,\ell)\|^{2} \big)<\infty
 	\end{split}	
 	\end{equation}
-	这里 $\beta$ (下然，$\beta>0$) 是对任意的$\ell=0,1,2...$，$R^{h}_{r(0,\ell)}$ 和 $R^{v}_{r(\ell,0)}$的最大特征值,  这意味着 \eqref{AMSS} 成立。至此，我们证明了闭环控制系统是渐进均方稳定的。
+	这里 $\beta$ (显然，$\beta>0$) 是对任意的$\ell=0,1,2...$，$R^{h}_{r(0,\ell)}$ 和 $R^{v}_{r(\ell,0)}$的最大特征值。上式意味着 \eqref{AMSS} 成立。至此，我们证明了闭环控制系统是渐进均方稳定的。
 	
 	下面我们来研究在零初始条件下系统的$H_{\infty}$性能问题。 根据闭环控制系统\eqref{closed-loop-system-equation}，不难推出
 	\begin{equation}\label{DETAV1}
@@ -284,7 +284,7 @@
 	\bar{A}_{k\tau }&E_{k}
 	\end{bmatrix}
 	\end{equation*}
-	注意到条件 \eqref{rholeseq} 及\eqref{T1C1}，我们推出
+	注意到条件 \eqref{rholeseq} 及\eqref{T1C1}，可以推出
 	\begin{equation}\label{invRho}
 	\begin{split}
 	&\bar{\rho}^{T}_{k}(i,j)B^{T}_{k}\mathcal{R}_{k}B_{k}\bar{\rho}_{k}(i,j)\\
@@ -292,7 +292,7 @@
 	&\leq 2\epsilon_{k}\big((\delta_{k}+\varrho_{1})^{2}\|x(i,j)\|^{2}+\varrho_{2}^{2}\|w(i,j)\|^{2} \big)
 	\end{split}
 	\end{equation} 
-	由条件 \eqref{T1C2} 及 \eqref{T1C3}我们可以得到下式
+	由条件 \eqref{T1C2} 及 \eqref{T1C3}可以得到下式
 	\begin{equation}\label{T1P4}
 	\mathcal{\varXi}_{k\tau }<0
 	\end{equation}	
@@ -322,10 +322,10 @@
 	进而 \eqref{invDef2}成立。 至此，我们完成了定理的证明。
 	
 \subsection{滑模面可达性分析}\label{minimization} 
-	在本小节，我们将会分析所设计滑模控制器的系统状态可达性问题。根据李雅普诺夫方法，我们会提供一个充分条件，使得异步滑模控制器\eqref{smc-law}可以迫使系统轨迹进入到一个预先设定的滑模域内部。
+	在本小节，我们将会分析在设计的异步控制率作用下的系统状态到所构造滑模面的可达性问题。借助Lyapunov方法，我们会提供一个充分条件，使得在异步滑模控制率\eqref{smc-law}可以迫使系统状态轨迹进入到一个预先设定的滑模域内部。
 	
 	{\bf 定理 \ \ 3.2：}
-	考虑具有异步2D滑模控制器的闭环2D-Markov跳变系统\eqref{closed-loop-system-equation}。如果对任意的$k\in\mathcal{N}_{1}$，$\tau\in\mathcal{N}_{2}$，存在矩阵 $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$， $R_{k}>0$， $F_{k}>0$，标量 $\epsilon_{k}>0$，  使得条件 \eqref{T1C1} 及下面的式子成立
+	考虑在异步2D滑模控制率作用下的闭环2D-Markov跳变系统\eqref{closed-loop-system-equation}。如果对任意的$k\in\mathcal{N}_{1}$，$\tau\in\mathcal{N}_{2}$，存在矩阵 $K_{\tau }\in\mathbb{R}^{n_u\times n_x}$， $R_{k}>0$， $F_{k}>0$，标量 $\epsilon_{k}>0$，  使得条件 \eqref{T1C1} 及下面的式子成立
 	\begin{equation} \label{T2C1}
 	2\sum_{\tau =1}^{N_{2}} \bar{A}^{T}_{k\tau }\big(\mathcal{R}_{k}+G^{T}\mathcal{F}_{k}G\big)\bar{A}_{k\tau }-R_{k} <0
 	\end{equation}
@@ -347,7 +347,7 @@
 	{\bf 证明：} 
 	首先，我们定义$\emph{\textbf{s(i, j)}} = \begin{bmatrix}
 	s^{h}(i+1,j)\\ s^{v}(i,j+1)
-	\end{bmatrix}$，  显然 $\emph{\textbf{s(i, j)}}=G\emph{\textbf{x(i, j)}}$。 然后我们选择如下李雅普诺夫函数
+	\end{bmatrix}$，  显然$\emph{\textbf{s(i, j)}}=G\emph{\textbf{x(i, j)}}$。 然后我们选择如下李雅普诺夫函数
 	\begin{equation}\label{LyapunoovT}
 	V(i,j)=V_{1}(i,j)+V_{2}(i,j)
 	\end{equation}
@@ -417,11 +417,11 @@
 	\end{split}
 	\end{equation*}  
 	显然，在用\eqref{rholeseq}替换 $\vec{\rho}_{k}(i,j)$后，我们可以推出,对任意的$k\in\mathcal{N}_{1}$， $\vec{\rho}_{k}(i,j) < \hat{\rho}_{k}(i,j)$。
-	然后由条件 \eqref{T1C2}， 我们知道当系统在滑模域外时 $\mathcal{O}$可以推出
+	然后由条件 \eqref{T1C2}， 我们知道当系统状态在滑模域 $\mathcal{O}$外时有
 	\begin{equation}\label{P2T5}
 	-\lambda_{\mathrm{min}}(F_{k})\|s(i,j)\|^{2} + \vec{\rho}_{k}(i,j) <0
 	\end{equation}
-	由条件\eqref{T2C1}， \eqref{P2T1}， \eqref{P2T3} 及\eqref{P2T5} 可以得到
+	由条件\eqref{T2C1}、 \eqref{P2T1}、 \eqref{P2T3} 、\eqref{P2T5} 可以得到
 	\begin{equation}
 	\begin{split}
 	&\mathbb{E}\{\varDelta V(i,j) \} \leq x^{T}(i,j)\Big\{ 2\sum_{\tau =1}^{N_{2}}\mu_{k\tau }\bar{A}^{T}_{k\tau }\big(\mathcal{R}_{k} +G^{T}\mathcal{F}_{k}G \big)\bar{A}_{k\tau } -R_{k} \Big\} x(i,j)<0
@@ -506,7 +506,7 @@
 	\end{equation}。\
 	
 	{\bf 证明：} 
-	正如前面所言，我们这个证明的目标是证明 定理3.1中的条件\eqref{T1C1}-\eqref{T1C3} 和定理3.2中的条件 \eqref{T2C1} 可以由条件 \eqref{T3C1}-\eqref{T3C3}同时保证。 在开始正式的证明之前，我们定义如下符号： $\tilde{K}_{\tau }=K_{\tau }L_{\tau }$， $\tilde{R}_{k}=R^{-1}_{k}$, $\tilde{F}_{k}=F^{-1}_{k}$， $\tilde{Q}_{k\tau }=Q^{-1}_{k\tau }$， $\tilde{T}_{k\tau }=T^{-1}_{k\tau }$ 及 $\tilde{\epsilon}=\epsilon^{-1}_{k}$。
+	正如前面所言，我们这个证明的目标是证明 定理3.1中的条件\eqref{T1C1}-\eqref{T1C3} 和定理3.2中的条件 \eqref{T2C1} 可以由条件 \eqref{T3C1}-\eqref{T3C3}同时保证。 在正式开始证明之前，我们定义如下符号： $\tilde{K}_{\tau }=K_{\tau }L_{\tau }$， $\tilde{R}_{k}=R^{-1}_{k}$, $\tilde{F}_{k}=F^{-1}_{k}$， $\tilde{Q}_{k\tau }=Q^{-1}_{k\tau }$， $\tilde{T}_{k\tau }=T^{-1}_{k\tau }$ 及 $\tilde{\epsilon}=\epsilon^{-1}_{k}$。
 	首先，我们证明 \eqref{T3C1} 等价于 \eqref{T1C1}。 使用 $\mathrm{diag}\{\epsilon_{k}I,I,\cdots,I \}$来左乘、右乘条件 \eqref{T3C1}然后使用Schur补引理，我们就可以得到\eqref{T1C1}。
 	然后 我们来证明条件\eqref{T3C2}-\eqref{T3C3} 可以保证 \eqref{T1C2}-\eqref{T1C3} 和 \eqref{T2C1}可以同时成立。  使用 $\mathrm{diag}\{R_{k}, I ,I,\cdots, I \}$  及其转置分别左乘、右乘 \eqref{T3C3}式，然后根据Schur补引理，我们可以推出 \eqref{T1C2}式成立。
 	由\eqref{T3C2} 可以推出$ \tilde{Q}_{k\tau}-L^{T}_{\tau }-L_{\tau }<0$， 也就是说 $L^{T}_{\tau }+L_{\tau } $ 是正定的， 进一步可以推出 $L_{\tau }$可逆。由于 $Q_{k\tau}>0$， 我们可以得到
@@ -532,14 +532,14 @@
 	\end{equation}
 	这里 $\check{A}_{k\tau }=\begin{bmatrix}
 	\bar{A}_{k\tau }&0
-	\end{bmatrix}$.显然 \eqref{T1C3} 可以被\eqref{ls3}式保证 \\
+	\end{bmatrix}$。显然 \eqref{T1C3} 可以被\eqref{ls3}式保证 \\
 	由\eqref{T1C2} 和 \eqref{ls3}可以推出
 	\begin{equation}
 	\mathcal{A} +2\sum_{\tau =0}^{N_{2}}\mu_{k\tau }\Big\{ \hat{A}^{T}_{k\tau }\mathcal{R}_{k}\hat{A}_{k\tau } + \check{A}^{T}_{k\tau }\mathcal{F}_{k}\check{A}_{k\tau } \Big\} < 0
 	\end{equation}
-	进一步根据正定矩阵的性质可以推出 \eqref{T2C1} 成立。 显然，增益矩阵 $K_{\tau }$不能从定理3.3中直接得到，然后可以得到 $\tilde{K}_{\tau }$。 由于矩阵$L_{\tau }$ 可逆，我们可以通过$K_{\tau }=\tilde{K}_{\tau }L^{-1}_{\tau }$间接地求得 $K_{\tau }$。至此，证明结束。
+	根据正定矩阵的性质进一步可以推出 \eqref{T2C1} 成立。 显然，增益矩阵 $K_{\tau }$不能从定理3.3中直接得到，然后可以得到 $\tilde{K}_{\tau }$。 由于矩阵$L_{\tau }$ 可逆，我们可以通过$K_{\tau }=\tilde{K}_{\tau }L^{-1}_{\tau }$间接地求得 $K_{\tau }$。至此，证明结束。
 	
-	显然，条件3.3中的LMIs可以根据Matlab中的矩阵不等式包来求解。下面，我们提出了一个异步滑膜控制器的求解算法。
+	显然，条件3.3中的LMIs可以根据Matlab中的矩阵不等式组件来求解。下面，我们提出一个异步滑膜控制器的求解算法。
 	
 	(1) 选择合适的$\beta_{k}$，使得对任意的$k\in\mathcal{N}_{1}$，矩阵 $GB_{k}$非齐次。
 	
@@ -554,8 +554,9 @@
 	
 
 \section{数值例子} \label{example}
-	本节，我们将提供一个数值仿真的例子，来验证提出异步滑模控制器的效果。  众所周知，一些动力学过程，如气体吸收、水流加热和空气干燥可以用达布方程来表示 \cite{marszalek1984two}。它们大都以偏微分方程的形式呈现，并且可以通过文献 \cite{du2001h}中的方法来转换成2D控制系统。这这个例子中，我们的系统模态和控制器模态都只有2个模态，也就是说 $\mathcal{N}_1=\{1,2\}$，$ \mathcal{N}_{2}=\{1,2\}$，同时，对应的系统矩阵为
-	Mode 1:
+	本节，我们将提供一个数值仿真的例子，来验证所提出异步滑模控制器的效果。  众所周知，一些动力学过程，如气体吸收、水流加热和空气干燥可以用达布方程来表示 \cite{marszalek1984two}。它们大都以偏微分方程的形式呈现，并且可以通过文献 \cite{du2001h}中的方法来转换成2D控制系统。在这个例子中，我们的系统和控制器都只有2个模态，也就是说 $\mathcal{N}_1=\{1,2\}$，$ \mathcal{N}_{2}=\{1,2\}$，同时，对应的系统矩阵为
+	
+	模态 1:
 	\begin{equation} \notag
 	\begin{aligned}
 	A_{1} &= \begin{bmatrix}
@@ -576,7 +577,8 @@
 	\end{bmatrix}
 	\end{aligned}  
 	\end{equation}
-	Mode 2:
+	
+	模态 2:
 	\begin{equation} \notag
 	\begin{aligned}
 	A_{2} &=\begin{bmatrix}
@@ -602,7 +604,7 @@
 	0.3\sin{ \|x(i,j)\|}, \quad \ r(i,j)=2
 	\end{cases}
 	\end{equation*}
-	因此，我们可以选择参数 $\delta_{k}$为在模态一时，$\delta_{1}=0.2$ ，在模态二时， $\delta_{2}=0.3$。\\
+	因此，我们可以选择参数 $\delta_{k}$为在模态1时，$\delta_{1}=0.2$ ，在模态2时， $\delta_{2}=0.3$。\\
 	系统的模态转移矩阵$\varLambda$和控制器的条件模态转移概率矩阵$\varPsi$分别为 
 	\begin{equation*}
 	\begin{aligned}
@@ -624,7 +626,7 @@
 		\caption{控制器模态变化}
 		\label{fig2}
 	\end{figure}
-	图 Fig.\ref{fig1}-\ref{fig2}分别给出了一个可能的系统模态和控制器模态的演变图。通过对比，不难发现控制器的模态和系统模态是不同步的。\\
+	图\ref{fig1}-\ref{fig2}分别给出了一个可能的系统模态和控制器模态的演变图。通过对比，不难发现控制器的模态和系统模态是不完全匹配的。\\
 	根据假设，我们设置初始条件 $X_{0}$ 和外部扰动 $w(i,j)$ 分别为
 	\begin{equation*}
 	\begin{aligned}
@@ -652,8 +654,8 @@
 		\caption{ $u(i,j)=0$时垂直方向系统状态轨迹}
 		\label{fig4}
 	\end{figure}
-	系统 \eqref{system-equation} 在 $u(i,j) = 0$ 时系统的水平、垂直状态表现为图  \ref{fig3} 和\ref{fig4}。 不难看出，在不施加控制作用时，系统是不稳定的。
-	然后我们按照提出的算法步骤，来进行控制器的求解。令 $\beta_{1}=0.6$ 及 $\beta_{2}=0.4$，然后求得矩阵 $G$ 为
+	系统 \eqref{system-equation} 在 $u(i,j) = 0$ 时系统的水平、垂直方向的系统子状态变化如图  \ref{fig3} 和\ref{fig4}。 不难看出，在不施加控制作用时，系统是不稳定的。
+	然后我们按照提出的算法步骤，来进行控制器的求解。令 $\beta_{1}=0.6$ 、 $\beta_{2}=0.4$，然后求得矩阵 $G$ 为
 	\begin{equation*}
 	G=\begin{bmatrix}
 	0.2&-0.16\\
@@ -662,7 +664,7 @@
 	\end{equation*}
 	不难验证矩阵 $GB_{k}$ 是非齐次的。参数 $\varrho_{1}$ 和 $\varrho_{2}$ 可以分别求得为 $\varrho_{1}=0.3$， $\varrho_{2}=0.6872$。 通过求解最优化问题 \eqref{optimization-problem}，我们求得控制器增益为\\
 	
-	模态一：
+	模态1：
 	\begin{equation*}
 	K_{1}=\begin{bmatrix}
 	4.4147  & -4.3512\\
@@ -670,7 +672,7 @@
 	\end{bmatrix}
 	\end{equation*}
 	
-	模态二：
+	模态2：
 	\begin{equation*}
 	K_{2} = 	\begin{bmatrix}
 	4.3706  & -3.8453 \\
@@ -712,5 +714,5 @@
 	\end{figure}
 
 \section{小结} \label{conclusion} 	
-	本章我们研究了Roesser模型下的二维Markov跳变系统的异步滑模控制问题。考虑到控制器不能获得完整的系统模态信息，因此我们基于隐Markov模型设计了异步滑模控制器。借助李雅普诺夫函数方法，我们研究了系统的稳定性及其$H_{\infty}$性能，以及系统状态到滑模面的可达性问题。给出了能够使得系统稳定，且满足一定$H_{\infty}$的充分条件，同时，该条件可以保证系统状态到滑模面的可达性。最后，我们通过一个例子来验证了提出方法的有效性。
+	本章我们研究了Roesser模型下的二维Markov跳变系统的异步滑模控制问题。考虑到控制器模态同系统模态的不匹配问题，我们基于隐Markov模型设计了异步滑模控制器。借助Lyapunov泛函方法，我们研究了系统的稳定性及其$H_{\infty}$性能，以及系统状态到滑模面的可达性问题。给出了能够使得系统稳定，且满足一定$H_{\infty}$的充分条件，同时，该条件可以保证系统状态到滑模面的可达性。最后，我们通过一个例子来验证了提出方法的有效性。
 	
