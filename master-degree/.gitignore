@@ -31,7 +31,6 @@
 *.vrb
 *.xdy
 *.tdo
-*.pdf
 *.brf
 *.xdv
 !/zju_thesis/logo/**/*.pdf
@@ -42,3 +41,5 @@
 ~*.doc
 *.bak
 .DS_Store
+
+*.pdf
